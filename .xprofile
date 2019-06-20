@@ -1,0 +1,12 @@
+#!/bin/sh
+# ~/.xprofile
+#
+
+#set profile
+[ -f ~/.fehbg ] && ~/.fehbg &
+
+#
+# run dwmbar
+if [ -f ~/.local/bin/dwmbar ]; then 
+	~/.local/bin/dwmbar &
+fi

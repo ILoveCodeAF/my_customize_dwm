@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+#
+
+#	bar=`date +"%a %d/%m/%Y %H:%M"`
+while true; do
+	xsetroot -name "$(date)"
+	
+	sleep 1m
+done

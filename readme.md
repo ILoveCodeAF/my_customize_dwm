@@ -1,3 +1,4 @@
+move wpa-supplicant.conf to /etc/wpa-supplicant/
 move 30-touchpad.conf to /etc/X11/xorg.conf.d/
 move dwmbar to ~/.local/bin/
 move .xprofile to ~/

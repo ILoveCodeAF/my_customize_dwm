@@ -2,9 +2,94 @@
 #
 #
 
+trap 'update' 5
+
+delim="|"
+
+#testweather() {
+#
+#}
+
+#wifi=''
+#
+#network() {
+#	wifi="$(nmcli dev wifi list | awk '/\*/{if (NR>1){print $8}}')"
+#}
+
+#network
+
+Status() {
+	# get wifi status
+	if [ "$(nmcli general status | awk '/connected/{if(NR>0 && $1 == "connected"){print $1}}')" == 'connected' ]; then
+		#nmcli dev wifi list | awk '/\*/{if (NR>0) {print $8}}' | sed -n "/▂/p"
+		wifi="$(grep "^\s*w" /proc/net/wireless | awk '{print int($3 * 100 / 70)}')"
+		if [ $wifi -ge 75 ]; then
+			echo " ▂▄▆█"
+		elif [ $wifi -ge 50 ]; then
+			echo " ▂▄▆_"
+		elif [ $wifi -ge 25 ]; then
+			echo " ▂▄__"
+		else
+			echo " ▂___"
+		fi
+		echo $delim
+	fi
+#	nmcli dev wifi list | awk '/\*/{if (NR>0){print $7}}'
+#	network
+#	nmcli dev wifi list | grep '*'
+#	echo "$(nmcli dev wifi list)" | awk '/\*/{if (NR>1){print $8}}'
+#grep "^\s*w" /proc/net/wireless | awk '{ print "", int($3 * 100 / 70) "%" }'
+#sed "s/down//;s/up//" /sys/class/net/e*/operstate
+#	echo $wifi
+#	echo $delim
+
+#	echo "▂▄▆█"
+
+#	pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( $SINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]%\).*,\1,'
+
+	# get engine ibus
+	engine="$(ibus engine)"
+	if [ $engine == "xkb:us::eng" ]; then
+		echo "en"
+	else
+		echo "vi"
+	fi
+
+	echo $delim
+
+	# get xbacklight
+	backlight="$(printf '%0.f' $(xbacklight -get))"
+	echo "🌟 $backlight"
+	echo $delim
+
+	# get volume
+#	volume="$(pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( $SINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]\)%.*,\1,')"
+	volume="$(pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( $SINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,')"
+	if [ $volume -gt 50 ]; then
+		volume="🔊 $volume%"
+	elif [ $volume -gt 0 ]; then
+		volume="🔉 $volume%"
+	else
+		volume="🔈 $volume%"
+	fi
+
+	echo $volume
+	echo $delim
+
+#	date '+%d/%m/%Y %H:%M'
+	date '+%a %b %d,%Y %H:%M'
+}
+
+update() {
+	xsetroot -name "$(Status | tr '\n' ' ')" &
+	wait
+}
+
 #	bar=`date +"%a %d/%m/%Y %H:%M"`
+# statusbar loop
 while true; do
-	xsetroot -name "$(date)"
-	
-	sleep 1m
+	update	
+
+	sleep 1m &
+	wait
 done

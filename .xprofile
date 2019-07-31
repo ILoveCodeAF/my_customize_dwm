@@ -2,8 +2,33 @@
 # ~/.xprofile
 #
 
+# locate the Terminus font
+#for dir in /usr/share/fonts do;
+#	if [ -d "$dir" ]; then
+#		cd "$dir";
+#		xset +fp "$PWD";
+#		mkfontscale;
+#		mkfontdir;
+#		cd ..;
+#	fi
+#done &&  xset fp rehash
+
+#xset +fp /usr/share/fonts/misc &
+#xset fp rehash &
+
+#transparency
+xcompmgr &
+#xcompmgr -c &
+
+#load key
+xbindkeys
+
+
 #set profile
 [ -f ~/.fehbg ] && ~/.fehbg &
+
+#start ibus
+ibus-daemon &
 
 #
 # run dwmbar

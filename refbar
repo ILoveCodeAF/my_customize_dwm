@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+#
+#						   __ _                
+#				 _ __ ___ / _| |__   __ _ _ __ 
+#				| '__/ _ \ |_| '_ \ / _` | '__|
+#				| | |  __/  _| |_) | (_| | |   
+#				|_|  \___|_| |_.__/ \__,_|_|   
+
+# Refresh the dwmbar.
+# Send SIGTRAP signal to dwmbar script, which will handle it with a trap.
+
+pkill -SIGTRAP dwmbar

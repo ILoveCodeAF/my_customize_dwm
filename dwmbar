@@ -76,6 +76,12 @@ Status() {
 	echo $volume
 	echo $delim
 
+	# get batery percent
+	for x in /sys/class/power_supply/BAT?/capacity; do
+		echo "🚀 $(cat $x)%"
+	done
+	echo $delim
+
 #	date '+%d/%m/%Y %H:%M'
 	date '+%a %b %d,%Y %H:%M'
 }

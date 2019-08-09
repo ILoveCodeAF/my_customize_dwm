@@ -1,0 +1,36 @@
+#!/bin/sh
+
+cd $HOME
+# install dwm
+#git clone /your edition/
+
+
+cd $HOME
+#install st
+#git clone //
+
+#install firefox, xbindkey, ibus-unikey, feh
+
+cd $HOME
+git clone https://github.com/ILoveCodeAF/my_customize_dwm.git
+
+src='my_customize_dwm'
+des='/etc/wpa-supplicant/'
+cp $src/wpa_supplicant.conf $des
+
+des='/etc/X11/xorg.conf.d/'
+cp $src/30-touchpad.conf $des
+
+mkdir -p $HOME/.local/bin
+des='$HOME/.local/bin/'
+cp $src/dwmbar $des
+cp $src/refbar $des
+cp $src/ibus-unikey $des
+
+des=$HOME
+cp $src/.bashrc $des
+cp $src/.bash_profile $des
+cp $src/.xprofile $des
+cp $src/.xinitrc $des
+cp $src/.xbindkeysrc $des
+

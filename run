@@ -9,7 +9,7 @@ cd $HOME
 #install st
 #git clone //
 
-#install firefox, xbindkey, ibus-unikey, feh
+#install firefox, xbindkey, ibus-unikey, feh, xbacklight, xcompmgr, alpha st, intellj, libra office, 
 
 cd $HOME
 git clone https://github.com/ILoveCodeAF/my_customize_dwm.git

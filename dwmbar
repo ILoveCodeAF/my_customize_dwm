@@ -2,7 +2,7 @@
 #
 #
 
-trap 'update' 5
+trap 'update' TRAP #5 sigtrap
 
 delim="|"
 
@@ -19,20 +19,23 @@ delim="|"
 #network
 
 Status() {
+	# space
+	echo ""
+
 	# get wifi status
-	if [ "$(nmcli general status | awk '/connected/{if(NR>0 && $1 == "connected"){print $1}}')" == 'connected' ]; then
+	if [ "$(nmcli general status | awk '/connected/{if(NR>0 && $1 == "connected"){print $1}}')" = 'connected' ]; then
 		#nmcli dev wifi list | awk '/\*/{if (NR>0) {print $8}}' | sed -n "/▂/p"
 		wifi="$(grep "^\s*w" /proc/net/wireless | awk '{print int($3 * 100 / 70)}')"
-		if [ $wifi -ge 75 ]; then
-			echo " ▂▄▆█"
-		elif [ $wifi -ge 50 ]; then
-			echo " ▂▄▆_"
-		elif [ $wifi -ge 25 ]; then
-			echo " ▂▄__"
+		if [ "$wifi" -ge 75 ]; then
+			echo "▂▄▆█"
+		elif [ "$wifi" -ge 50 ]; then
+			echo "▂▄▆_"
+		elif [ "$wifi" -ge 25 ]; then
+			echo "▂▄__"
 		else
-			echo " ▂___"
+			echo "▂___"
 		fi
-		echo $delim
+		echo "$delim"
 	fi
 #	nmcli dev wifi list | awk '/\*/{if (NR>0){print $7}}'
 #	network
@@ -49,38 +52,40 @@ Status() {
 
 	# get engine ibus
 	engine="$(ibus engine)"
-	if [ $engine == "xkb:us::eng" ]; then
+	if [ "$engine" = "xkb:us::eng" ]; then
 		echo "en"
-	else
+	elif [ "$engine" = "Unikey" ]; then
 		echo "vi"
+	else
+		echo "🔄"
 	fi
 
-	echo $delim
+	echo "$delim"
 
 	# get xbacklight
-	backlight="$(printf '%0.f' $(xbacklight -get))"
+	backlight="$(printf '%0.f' "$(xbacklight -get)")"
 	echo "🌟 $backlight"
-	echo $delim
+	echo "$delim"
 
 	# get volume
 #	volume="$(pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( $SINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]\)%.*,\1,')"
-	volume="$(pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( $SINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,')"
-	if [ $volume -gt 50 ]; then
+	volume="$(pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( SINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,')"
+	if [ "$volume" -gt 50 ]; then
 		volume="🔊 $volume%"
-	elif [ $volume -gt 0 ]; then
+	elif [ "$volume" -gt 0 ]; then
 		volume="🔉 $volume%"
 	else
 		volume="🔈 $volume%"
 	fi
 
-	echo $volume
-	echo $delim
+	echo "$volume"
+	echo "$delim"
 
 	# get batery percent
 	for x in /sys/class/power_supply/BAT?/capacity; do
-		echo "🚀 $(cat $x)%"
+		echo "🚀 $(cat "$x")%"
 	done
-	echo $delim
+	echo "$delim"
 
 #	date '+%d/%m/%Y %H:%M'
 	date '+%a %b %d,%Y %H:%M'

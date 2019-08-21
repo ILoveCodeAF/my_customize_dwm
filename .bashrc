@@ -1,4 +1,4 @@
-#
+#!/bin/bash
 # ~/.bashrc
 #
 #			   _               _              
@@ -23,9 +23,9 @@ RED="\[$(tput setaf 9)\]"
 
 alias ls='ls --color=auto'
 
-#my configuration
+#my commands
 alias wifi='nmcli device wifi'
-alias weatherhn='curl wttr.in/"Ha Noi, Viet Nam"'
+#alias weatherhn='curl wttr.in/"Ha Noi, Viet Nam"'
 alias weather='curl wttr.in'
 #pacman -Rns $(pacman -Qtdq)
 #

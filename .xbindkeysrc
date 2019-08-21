@@ -88,6 +88,7 @@
 "xbacklight -dec 5; refbar"
 	XF86MonBrightnessDown
 
+# toggle engine, Mod4 = windowkey
 "ibus-unikey"
 	Mod4 + space
 

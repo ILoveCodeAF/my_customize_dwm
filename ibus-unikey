@@ -9,7 +9,7 @@
 
 engine="$(ibus engine)"
 
-if [ $engine == "xkb:us::eng" ]; then
+if [ "$engine" = "xkb:us::eng" ]; then
 	ibus engine Unikey
 else
 	ibus engine xkb:us::eng

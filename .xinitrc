@@ -7,7 +7,8 @@
 #exec gnome-session
 
 
-
+#exec winodw manager: kde-plasma
+#exec startkde
 
 
 

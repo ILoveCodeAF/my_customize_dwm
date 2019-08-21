@@ -1,8 +1,8 @@
 #!/bin/sh
 
-
+#wget
 #wget dl.suckless.org/dwm/dwm-6.2.tar.gz
-cd $HOME
+cd $HOME/Downloads
 
 # install dwm
 #git clone /your edition/

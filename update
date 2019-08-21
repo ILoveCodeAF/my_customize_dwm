@@ -1,0 +1,13 @@
+#!/bin/sh
+des=~/Downloads/my_customize_dwm/
+cp ~/.bashrc $des
+cp ~/.bash_profile $des
+cp ~/.xprofile $des
+cp ~/.xinitrc $des
+cp ~/.xbindkeysrc $des
+
+
+src=~/.local/bin/
+cp $src/dwmbar $des
+cp $src/refbar $des
+cp $src/ibus-unikey $des

@@ -12,8 +12,9 @@
 #night: from end to start.
 start=6
 end=18
-day=6500
-night=4500
+day=6200
+night=2700
+
 
 run(){
 	while true; do

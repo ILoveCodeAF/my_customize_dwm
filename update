@@ -11,3 +11,8 @@ src=~/.local/bin/
 cp $src/dwmbar $des
 cp $src/refbar $des
 cp $src/ibus-unikey $des
+cp $src/wm_name $des
+cp $src/ibus-unikey $des
+cp $src/myredshift $des
+cp $src/myredshift_dev $des
+cp $src/mypulseaudio $des

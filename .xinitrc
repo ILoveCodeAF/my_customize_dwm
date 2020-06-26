@@ -11,7 +11,12 @@
 #exec startkde
 
 
+#exec window manager: xfce4
+#[ -f ~/.xfce_profile ] && . ~/.xfce_profile
+#exec startxfce4
 
+#exec window manager:i3
+#exec i3
 
 #set up profile dwm
 [ -f ~/.xprofile ] && . ~/.xprofile

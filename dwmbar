@@ -69,16 +69,22 @@ Status() {
 
 	# get volume
 #	volume="$(pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( $SINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]\)%.*,\1,')"
-	volume="$(pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( SINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,')"
-	if [ "$volume" -gt 50 ]; then
-		volume="🔊 $volume%"
-	elif [ "$volume" -gt 0 ]; then
-		volume="🔉 $volume%"
+	mute="$(pactl list sinks | grep Mute | sed -e 's,^.*Mute: \(.*\)$,\1,')"
+	if [ "$mute" = "no" ]; then
+		volume="$(pactl list sinks | grep '^[[:space:]]Volume:' | head -n $(( SINK + 1 )) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,')"
+		if [ "$volume" -gt 50 ]; then
+			volume="🔊 $volume%"
+		elif [ "$volume" -gt 0 ]; then
+			volume="🔉 $volume%"
+		else
+			volume="🔈 $volume%"
+		fi
+		
+		echo "$volume"
 	else
-		volume="🔈 $volume%"
+		mute="🔇"
+		echo "$mute"
 	fi
-
-	echo "$volume"
 	echo "$delim"
 
 	# get batery percent

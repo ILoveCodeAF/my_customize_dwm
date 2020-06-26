@@ -1,0 +1,10 @@
+#!/bin/sh
+
+pulseaudio --check
+
+if [ $? != "0" ]; then
+	echo "pulseaudio-daemonize is not running..."
+	echo "start pulseaudio-daemonize"
+	pulseaudio --daemonize
+fi
+echo "pulseaudio-daemonize is running..."

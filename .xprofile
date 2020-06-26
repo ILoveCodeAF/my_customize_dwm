@@ -23,9 +23,13 @@ xcompmgr &
 #load key
 xbindkeys
 
+# redshift
+[ -f ~/.local/bin/myredshift ] && . ~/.local/bin/myredshift &
 
 #set profile
-[ -f ~/.fehbg ] && ~/.fehbg &
+#[ -f ~/.fehbg ] && ~/.fehbg &
+[ -f ~/.my_bg ] && ~/.my_bg &
+
 
 #start ibus
 ibus-daemon &

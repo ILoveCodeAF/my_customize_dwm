@@ -77,7 +77,7 @@
 
 # Mute volume
 # "pactl set-sink-mute @DEFAULT_SINK@ toggle"
-"pactl set-sink-mute 0 toggle"
+"pactl set-sink-mute 0 toggle; refbar"
 	XF86AudioMute
 
 # Increase backlight
@@ -91,6 +91,10 @@
 # toggle engine, Mod4 = windowkey
 "ibus-unikey"
 	Mod4 + space
+
+# print screen
+"xfce4-screenshooter"
+	Print
 
 ##################################
 # End of xbindkeys configuration #

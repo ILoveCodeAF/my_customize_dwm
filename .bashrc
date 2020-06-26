@@ -28,6 +28,8 @@ alias wifi='nmcli device wifi'
 #alias weatherhn='curl wttr.in/"Ha Noi, Viet Nam"'
 alias weather='curl wttr.in'
 #pacman -Rns $(pacman -Qtdq)
+alias please='sudo'
+alias filemanager='exo-open --launch FileManager'
 #
 
 
